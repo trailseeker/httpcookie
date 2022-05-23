@@ -8,7 +8,7 @@ app.use(cookieParser());
 app.get('/', (req, res) => {
 	res
 		.status(202)
-		.cookie('session', 'blah.. blah.. blahh....', {
+		.cookie('JWT', 'SXDFSA08Q09239AS0D98123049203498DXS092384092834098SD098F203948203948203948234234.234987293847234.23.423492830492384092834089', {
 			sameSite: 'strict',
 			path: '/',
 			expires: new Date(new Date().getTime() + 100 * 1000),
@@ -20,4 +20,4 @@ app.get('/deleteCookie', (req, res) => {
 		.status(202)
 		.clearCookie('Name').send("cookies cleared")
 });
-app.listen(4000);
+app.listen(3000);
