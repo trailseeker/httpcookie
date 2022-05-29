@@ -1,0 +1,49 @@
+<script >
+
+
+function get_cookie(cookie_name) {
+    let c_name = cookie_name + "=";
+    let cookie_decoded = decodeURIComponent(document.cookie);
+    let cookie_parts = cookie_decoded.split(';');
+    
+    for(let i = 0; i <cookie_parts.length; i++) {
+        let c = cookie_parts[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(c_name) == 0) {
+            return c.substring(c_name.length, c.length);
+        }
+    }
+    return "";
+}
+
+const setCookie = (options) => {
+  const {
+    name,
+    value = '',
+    path = '/',
+    duration = 3600,
+  } = options;
+  
+  const durationMs = duration * 1000;
+  const expires =
+    new Date(Date.now() + durationMs);
+
+  document.cookie = 
+    `${name}=${escape(value)}; expires=${expires.toUTCString()}; path=${path}`;
+}
+
+
+let callBackUrl=get_cookie("CALLBACK_URL");
+
+
+console.log(callBackUrl);
+if(callBackUrl != '' ){
+    document.cookie = "CALLBACK_URL=";
+
+    window.location.replace(callBackUrl);
+ 
+}
+
+</script>
